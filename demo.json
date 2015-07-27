@@ -1,0 +1,60 @@
+[
+	{
+		"title": 	"Start",
+		"scene": 	["<h2>Welcome to the HypedJS demo!</h2>",
+					 "Once upon a time, there was a GitHub repo named HypedJS."],
+		"choices": 	[
+						["What is HypedJS?", "What"],
+						["What can I use HypedJS for?", "Uses"],
+						["How do I use HypedJS?", "How"]						
+					]
+	},
+	{
+		"title": 	"What",
+		"scene": 	["<h2>What is HypedJS?</h2>",
+					 "HypedJS is a lightweight, open-source JavaScript tool that lets you quickly create hypertext stories and experiences."],
+		"choices": 	[
+						["Back to Introduction.", "Start"]						
+					]
+	},
+	{
+		"title": 	"How",
+		"scene": 	["<h2>How do I make a hypertext experience with HypedJS?</h2>",
+					 "<h3>1) Fork and clone a local copy of the repo.</h3>", 
+					 "<h3>2) Edit the <i>demo.json</i> file.  This file contains data about each <a href='http://twinery.org/wiki/passage'>passage</a> in your hypertext experience.</h3>",
+					 "<ul><li>Each passage should have an identifying <i>title</i>, static text that describes the <i>scene</i>, and an array of <i>choices</i>.</li>",
+					 "<li>A scene is an array of Strings, with each element being a separate paragraph in the scene.  Each choice contains the text for that choice, and a reference (title) for the passage to which this choice should link.</li>",
+					 "<li>The first passage displayed should have a title of <i>Start</i>.</li></ul>",
+					 "<h3>3) Open the terminal / command line.</h3>",
+					 "<ul><li>Change directory (cd) into the HypedJS folder.</li>",
+					 "<li>Type <i>python -m SimpleHTTPServer</i> to get a simple server running.  This will avoid cross-origin issues when reading the JSON file locally.</li></ul>",
+				     "<h3>4) Open <i>localhost:8000</i> in your web browser to view the result.</h3>",
+					 "<h3>5) That's it!  You can play around with the JS, CSS, and HTML to make it your own.</h3>"
+					],
+		"choices": 	[
+						["Back to Introduction.", "Start"],	
+						["Any other magic I can do?","Magic"]					
+					]
+	},
+	{
+		"title": 	"Uses",
+		"scene": 	["<h2>Use Cases</h2>",
+					 "HypedJS is a quick way to link to other pages via <a href='https://en.wikipedia.org/wiki/Hypertext'>hypertext</a>.  It was built to function as a lighter and more portable version of <a href='http://twinery.org/'>Twine</a>, for web developers.  With HypedJS, you can quickly embed a hypertext experience in any website.",
+					 "You can use it to automatically create reference documentation that's easy to read and navigate.  You can also create your own interactive, nonlinear stories."
+					],
+		"choices": 	[
+						["Back to Introduction.", "Start"]						
+					]
+	},
+	{
+		"title": 	"Magic",
+		"scene": 	["<h2>Extra Magic</h2>",
+					 "You can set hidden parameter values to numbers or Strings.  Inside your scene description, simply write 'set PARAM-NAME to PARAM-VALUE'.  Enclose the expression with double @ signs on each side.",
+					 "As an example, you might set a variable of 'hunger' to 'full', or a variable named 'numCookies' to 10.",
+					 "To retrieve and state the value for a parameter, use the command 'get PARAM-NAME', again enclosed within double @ signs.  You can state a parameter value during a scene, or inside the text of a choice."
+					],
+		"choices": 	[
+						["Back to Introduction.", "Start"]						
+					]
+	}
+]
