@@ -126,7 +126,7 @@ function check_commands(text){
 	// Make an array of all of the commands.	
 	var re = /\@@(.*?)\@@/g;
 	var commands = text.match(re);
-	
+
 	if (commands){
 		// For each command,
 		for (var i=0; i<commands.length; i++){
@@ -134,13 +134,18 @@ function check_commands(text){
 			commands[i] = commands[i].slice(2,-2);
 
 			// Act on the command, if it does not modify the surrounding text.
-			follow_command(commands[i]);
+			follow_simple_command(commands[i]);
 		}
 		
 		// If command was a request for a parameter value, state the value.
 		text = text.replace(/\@@(get\s.*?)\@@/g, function(matched){  			
   			return store.get(matched.slice(6,-2));
 		});		
+
+		// Process conditionals.
+		text = text.replace(/\@@(if\s.*?)\endif@@/g, function(matched){
+			return process_conditional(matched);		
+		});
 
 		// Return text with commands removed.
 		text = text.replace(re,"");
@@ -156,7 +161,7 @@ function check_commands(text){
  * Currently handles:
  *	- @@set PARAM to VALUE@@: Sets a variable to a number or string.
  */
-function follow_command(text){
+function follow_simple_command(text){
 	// If the command is setting a parameter, do so.
 	if (~text.indexOf("set ")){		
 		// Determine parameter name.
@@ -176,6 +181,105 @@ function follow_command(text){
 			store.set(paramName, value);				
 		}
 	}	
+}
+
+/*
+ * Extracts and handles a conditional command.
+ *
+ * Currently handles:
+ *  - @@if PARAM eq VALUE@@Write something.@@endif@@  
+ *  - @@if PARAM eq VALUE@@Write something.@@else@@Write something else.@@endif@@  
+ */
+function process_conditional(cond){
+	var replacement = ""; 	// We will replace the code with the text it specifies.
+	var operator = "";  	// eq, geq, leq, gt, lt
+
+	// Determine parameter name.
+	var ifRemoved = cond.slice(5);	
+	var firstSpace = ifRemoved.indexOf(" ");
+	var paramName = ifRemoved.slice(0, firstSpace);
+	
+	// Determine operator.
+	var x = (ifRemoved.slice(paramName.length+1));
+	var y = x.indexOf(" ");
+	var operator = x.slice(0,y);
+	
+	// Determine value.
+	var z = x.indexOf("@@");
+	var value = x.slice(y+1,z);
+
+	// Check if the expression is true.
+	isTrue = is_exp_true(paramName,operator,value);
+
+	// If the conditional is true, write the first statement.
+	if (isTrue){
+		var g = x.indexOf("@@");
+		var i = x.slice(g+2);
+		var h = i.indexOf("@@");
+		
+		replacement = i.slice(0,h);
+	}
+	// If the conditional is not true,
+	else{
+		// If conditional contains else,
+		var a = x.indexOf('@@else@@');
+		if(~a){
+			// ...write the statement corresponding with the else.
+			var b = x.slice(a+8);
+			var c = b.indexOf("@@endif@@");
+			replacement=b.slice(0,c);			
+		}
+	}	
+	return replacement;
+}
+
+/*
+ * Determines if an expression that compares a parameter's 
+ * ('param') actual value with another value ('val'), by way 
+ * of an operator ('op'). 
+ * 
+ * Currently supports the following operators for comparison:
+ *  - eq 	(equals)
+ *  - lt 	(less than)
+ *  - gt 	(greater than)
+ *  - geq	(greater than or equal to)
+ *  - leq	(less than or equal to)
+ *
+ */
+function is_exp_true(param, op, val){
+	var isTrue = false;
+	var actualVal = store.get(param);
+
+	if (op=="eq"){
+		if (actualVal==val){
+			isTrue=true;
+		}
+	} 
+	else if(op=="lt"){
+		if (actualVal<val){
+			isTrue=true;
+		}
+	}
+	else if(op=="gt"){
+		if (actualVal>val){
+			isTrue=true;
+		}
+	}
+	else if(op=="geq"){
+		if (actualVal>=val){
+			isTrue=true;
+		}
+	}
+	else if(op=="leq"){
+		if (actualVal<=val){
+			isTrue=true;
+		}
+	}
+	else{
+		console.log("Unrecognized operator.  Returning false.");
+	}
+
+	return isTrue;
 }
 
 /* 
