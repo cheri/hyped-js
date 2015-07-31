@@ -49,9 +49,16 @@
 	{
 		"title": 	"Magic",
 		"scene": 	["<h2>Extra Magic</h2>",
-					 "You can set hidden parameter values to numbers or Strings.  Inside your scene description, simply write 'set PARAM-NAME to PARAM-VALUE'.  Enclose the expression with double @ signs on each side.",
+					 "<h3>Setting Variables</h3>",
+					 "You can set hidden parameter values to numbers or Strings.  Inside your scene description, simply write '<i>set PARAM-NAME to PARAM-VALUE</i>'.  Enclose the expression with double @ signs on each side.",
 					 "As an example, you might set a variable of 'hunger' to 'full', or a variable named 'numCookies' to 10.",
-					 "To retrieve and state the value for a parameter, use the command 'get PARAM-NAME', again enclosed within double @ signs.  You can state a parameter value during a scene, or inside the text of a choice."
+					 "To retrieve and state the value for a parameter, use the command '<i>get PARAM-NAME</i>', again enclosed within double @ signs.  You can state a parameter value during a scene, or inside the text of a choice.",
+					 "<br><h3>Conditionals</h3>",
+					 "You can control what text the player will see based on the value of a variable by using a conditional, or if-statement.",
+					 "The following operators ('OP') are supported: <i>eq</i> (equals), <i>gt</i> (greater than), <i>lt</i> (less than), <i>geq</i> (greater than or equal to), and <i>leq</i> (less than or equal to).",
+					 " To use an if-statement, use the command '<i>if PARAM-NAME OP VALUE</i>', enclosed in double at signs.  Then state the text that should appear if that expression is true.",
+					 "Optionally, you may then write '<i>else</i>' within double at signs, and then state the text that should appear if the expression is false.",
+					 "Finally, complete the if-statement with a terminating '<i>endif</i>', enclosed within double at signs."
 					],
 		"choices": 	[
 						["Back to Introduction.", "Start"]						
