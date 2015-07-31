@@ -44,9 +44,9 @@ When using an if-statement, the following operators ('OP') are supported: eq (eq
 
 To use an if-statement, use the command **@@if PARAM-NAME OP VALUE@@**.  Then state the text that should appear if that expression is true.
 
-Optionally, you may then write '@@else@@', and then state the text that should appear if the expression is false.
+Optionally, you may then write **@@else@@**, and then state the text that should appear if the expression is false.
 
-Finally, complete the if-statement with a terminating @@endif@@.
+Finally, complete the if-statement with a terminating **@@endif@@**.
 
 Examples: 
  * @@if hunger eq full@@You feel full.@@endif@@
