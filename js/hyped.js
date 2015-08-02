@@ -160,6 +160,11 @@ function check_commands(text){
  * 
  * Currently handles:
  *	- @@set PARAM to VALUE@@: Sets a variable to a number or string.
+ *  - @@incr PARAM@@: 	Increments a numeric variable by one.
+ *  - @@incr PARAM x@@: Increments a numeric variable by x.
+ *  - @@decr PARAM@@: 	Decrements a numeric variable by one.
+ *  - @@decr PARAM x@@: Decrements a numeric variable by x.
+ *  - @@mult PARAM x@@: Multiplies a numeric variable by x.
  */
 function follow_simple_command(text){
 	// If the command is setting a parameter, do so.
@@ -180,6 +185,15 @@ function follow_simple_command(text){
 			store.set(paramName, value);				
 		}
 	}	
+	else if (~text.indexOf("incr ")){	
+		perform_op(text,"incr")		
+	}
+	else if (~text.indexOf("decr ")){	
+		perform_op(text,"decr")
+	}
+	else if(~text.indexOf("mult ")){
+		perform_op(text,"mult");
+	}
 }
 
 /*
@@ -262,6 +276,45 @@ function get_var_name(text, keyword, codetag){
 	return [paramName,keywordRemoved];
 }
 
+/* 
+ * Performs basic operation (incr, decr, mult), as 
+ * demanded by a command expression.
+ * 
+ * Operators (op) include "incr", "decr", and "mult".
+ *
+ */
+function perform_op(text,op){
+	// Determine parameter name.		
+	var findParam = get_var_name(text,op,false);
+	var paramName = findParam[0];
+
+	// How much to multiply the parameter by.
+	var toOp = 1;
+
+	if (findParam[1].length > paramName.length){			
+		toOp = parseFloat(get_var_name(findParam[1],paramName,false));
+	}
+
+	// Retrieve stored param
+	var paramVal = store.get(paramName);
+
+	// If it is a number, increment appropriately
+	if (isNumeric(paramVal)){
+		if (op=="incr"){
+			store.set(paramName, paramVal+toOp);
+		}
+		else if (op=="decr"){
+			store.set(paramName, paramVal-toOp);
+		}
+		else if (op=="mult"){
+			store.set(paramName, paramVal*toOp);
+		}
+		else{
+			console.log("Unrecognized operator. " + paramName + " is still " + paramVal + ".");
+		}
+	}	
+}
+/*
  * Determines if an expression that compares a parameter's 
  * ('param') actual value with another value ('val'), by way 
  * of an operator ('op'). 
