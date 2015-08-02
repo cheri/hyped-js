@@ -37,6 +37,14 @@ Examples:
 * @@set potions to 3@@
 * You have @@get potions@@ potions. 
 
+## Modifying Variables
+You can add, subtract, or multiply numeric parameters.  The following commands are supported:
+* **@@incr PARAM@@**: Increments a numeric variable by one.
+* **@@decr PARAM@@**: Decrements a numeric variable by one.
+* **@@incr PARAM x@@**: Increments a numeric variable by x.
+* **@@decr PARAM x@@**: Decrements a numeric variable by x.
+* **@@mult PARAM x@@**: Multiplies a numeric variable by x.
+
 ### Conditional Statements
 You can control what text the player will see based on the value of a variable by using a conditional, or if-statement.
 
