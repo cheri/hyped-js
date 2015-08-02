@@ -165,17 +165,16 @@ function follow_simple_command(text){
 	// If the command is setting a parameter, do so.
 	if (~text.indexOf("set ")){		
 		// Determine parameter name.
-		var setRemoved = text.slice(4);
-		var firstSpace = setRemoved.indexOf(" ");
-		var paramName = setRemoved.slice(0, firstSpace);
-
+		var findParam = get_var_name(text,"set",false);
+		var paramName = findParam[0];
+	
 		// Determine parameter value.  
-		var value = setRemoved.slice(paramName.length+4);
+		var value = findParam[1].slice(paramName.length+4);
 
 		// Set parameter to value.
 		// Value may be a float (number) or a String.
 		if (isNumeric(value)){
-			store.set(paramName, parseFloat(value));						
+			store.set(paramName, parseFloat(value));
 		}
 		else {
 			store.set(paramName, value);				
@@ -195,21 +194,25 @@ function process_conditional(cond){
 	var operator = "";  	// eq, geq, leq, gt, lt
 
 	// Determine parameter name.
-	var ifRemoved = cond.slice(5);	
-	var firstSpace = ifRemoved.indexOf(" ");
-	var paramName = ifRemoved.slice(0, firstSpace);
-	
+	var findParam = get_var_name(cond,"if",true);
+	var param = findParam[0];
+
 	// Determine operator.
-	var x = (ifRemoved.slice(paramName.length+1));
+	var findOp = get_var_name(findParam[1],param,false);
+	var operator = findOp[0];
+
+	// Handy variables for later reference: 
+	// 	- x is remaining command after finding the operator
+	//  - y is the first space we find in x
+	var x = findOp[1];
 	var y = x.indexOf(" ");
-	var operator = x.slice(0,y);
 	
 	// Determine value.
 	var z = x.indexOf("@@");
 	var value = x.slice(y+1,z);
 
 	// Check if the expression is true.
-	isTrue = is_exp_true(paramName,operator,value);
+	isTrue = is_exp_true(param,operator,value);
 
 	// If the conditional is true, write the first statement.
 	if (isTrue){
@@ -234,6 +237,31 @@ function process_conditional(cond){
 }
 
 /*
+ * Extracts entity name from a command expression
+ * (e.g., finds parameter and operator names). 
+ *
+ * If codetag is true, assumes command includes '@@'
+ * in the beginning.
+ *
+ */
+function get_var_name(text, keyword, codetag){
+	var tag = 0;
+	if (codetag){
+		tag = 2;
+	}
+	var keywordRemoved = text.slice(keyword.length+tag+1);	
+	var firstSpace = keywordRemoved.indexOf(" ");
+	
+	// If there is no first space, parameter is until end of string
+	if (firstSpace==-1){
+		firstSpace = keywordRemoved.length;		
+	}
+
+	var paramName = keywordRemoved.slice(0, firstSpace);
+
+	return [paramName,keywordRemoved];
+}
+
  * Determines if an expression that compares a parameter's 
  * ('param') actual value with another value ('val'), by way 
  * of an operator ('op'). 
