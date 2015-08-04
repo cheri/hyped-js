@@ -37,7 +37,7 @@ Examples:
 * @@set potions to 3@@
 * You have @@get potions@@ potions. 
 
-## Modifying Variables
+### Modifying Variables
 You can add, subtract, or multiply numeric parameters.  The following commands are supported:
 * **@@incr PARAM@@**: Increments a numeric variable by one.
 * **@@decr PARAM@@**: Decrements a numeric variable by one.
