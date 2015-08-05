@@ -30,22 +30,32 @@ Passage.prototype = {
 	setChoices:function(new_choices){this.choices=new_choices;},
 
 	render:function(){
+		// Make temporary arrays for scene and choices.
+		// This will ensure that we do not overwrite coded variables.		
+		var scenes = this.scene.slice(0);
+
+		var chs = new Choices([]);
+		for (var j=0; j<this.choices.list.length;j++){						
+			chs.addChoice(this.choices.list[j].text,this.choices.list[j].link);		
+		}
+
+
 		// Check for commands.
-		for(k=0;k<this.scene.length;k++){
-			this.scene[k] = check_commands(this.scene[k]);
+		for(k=0;k<scenes.length;k++){
+			scenes[k] = check_commands(scenes[k]);
 		}		
 
 		// Show scene description.
-		change_text_with_breaks('scene-description',this.scene);	
+		change_text_with_breaks('scene-description',scenes);	
 
 		// Show choice points.		
 		var element = document.getElementById("choice-points");
-		for (i=0; i<this.choices.list.length;i++){			
+		for (i=0; i<chs.list.length;i++){			
 			// Check for commands in the current choice point.
-			this.choices.list[i].text = check_commands(this.choices.list[i].text);
+			chs.list[i].text = check_commands(chs.list[i].text);
 
 			// Show choice point.
-			element.innerHTML +=  "<p class='choice-point' id="+ this.choices.list[i].link + " onClick='click_choice(this.id)'>" + this.choices.list[i].text + "</p>";
+			element.innerHTML +=  "<p class='choice-point' id="+ chs.list[i].link + " onClick='click_choice(this.id)'>" + chs.list[i].text + "</p>";
 		}
 	}
 }
