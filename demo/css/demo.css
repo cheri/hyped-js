@@ -3,7 +3,7 @@ html,body{
 	color: lightgreen;
 	margin: 0px;
 	padding: 0px;
-	font-family: Arial;
+	font-family: Arial,sans-serif;
 }
 
 h1,h2,h3,ul{margin:0px;}
