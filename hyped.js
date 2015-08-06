@@ -20,15 +20,6 @@ function Passage(title,scene,choices){
 }
 
 Passage.prototype = {
-	constructor:Passage,
-	getTitle:function(){return this.title;},
-	getScene:function(){return this.scene;},
-	getChoices:function(){return this.choices;},
-
-	setTitle:function(new_title){this.title=new_title;},
-	setScene:function(new_scene){this.scene=new_scene;},
-	setChoices:function(new_choices){this.choices=new_choices;},
-
 	render:function(){
 		// Make temporary arrays for scene and choices.
 		// This will ensure that we do not overwrite coded variables.
@@ -73,9 +64,8 @@ Passage.prototype = {
 function Choices(listOfChoices){
 	this.list = listOfChoices;
 }
-Choices.prototype = {
-	constructor:Choices,
 
+Choices.prototype = {
 	addChoice:function(text,link){
 		var ch = new Choice();
 		ch.text = text;
@@ -96,11 +86,6 @@ function Choice(text,link){
 	this.text = text;
 	this.link = link;
 }
-
-Choice.prototype = {
-	constructor:Choice
-}
-
 
 /*
  * When you click a choice, show the passage that follows.

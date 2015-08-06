@@ -29,7 +29,7 @@ $(document).ready(function(){
 			var p = new Passage(data[i].title, data[i].scene, choiceList);
 
 			// Add the Passage object to a searchable dictionary, with passage titles as keys.
-			passages[p.getTitle()] = p;
+			passages[p.title] = p;
 		}
 
 		// Display the first passage.
