@@ -13,7 +13,7 @@
 passages = {};
 
 // Read in passage data from demo.json
-$.getJSON( "../demo.json", function( data ) {
+$.getJSON( "/demo/demo.json", function( data ) {
 
 	// For each set of passage data,
 	for (var i=0; i<data.length; i++){

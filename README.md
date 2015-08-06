@@ -20,7 +20,7 @@ HypedJS is a lightweight, open-source JavaScript tool that lets you quickly crea
 
   * Type **python -m SimpleHTTPServer** to get a simple server running. This will avoid cross-origin issues when reading the JSON file locally.
 
-5. Open localhost:8000 in your web browser to view the result.
+5. Open [localhost:8000/demo](http://localhost:8000/demo) in your web browser to view the result.
 
 
 5) That's it! You can play around with the JS, CSS, and HTML to make it your own.
