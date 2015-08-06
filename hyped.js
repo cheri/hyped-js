@@ -46,7 +46,7 @@ Passage.prototype = {
 		}
 
 		// Show scene description.
-		change_text_with_breaks('scene-description',scenes);
+		document.getElementById("scene-description").innerHTML = scenes.join("<br><br>");
 
 		// Clear choice points.
 		document.getElementById("choice-points").innerHTML = "";
@@ -111,25 +111,6 @@ function click_choice(chosenLink){
 
 	// Display chosen passage.
 	passages[chosenLink].render();
-}
-
-/*
- * Change text for an element of a certain id.
- * Each paragraph is represented as an element in the text array.
- */
-function change_text_with_breaks(id, text_array){
-	var text = "";
-
-	// Add breaks after each text chunk.
-	for (var i = 0; i < text_array.length; i++) {
-		text += text_array[i] + "<br /><br />"
-	}
-
-	// Remove final break.
-	text = text.substring(0,text.length-6);
-
-	// Change text for element of a certain id.
-	document.getElementById(id).innerHTML = text;
 }
 
 /*
