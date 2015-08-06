@@ -13,11 +13,14 @@
  	* Scene: Static text description of scene (String array - each element is a paragraph).
  	* Choices: List of choices for the passage (String array).
  */
-function Passage(title,scene,choices){
+
+(function() {
+
+window.Passage = function(title,scene,choices){
 	this.title = title;
 	this.scene = scene;
 	this.choices = choices;
-}
+};
 
 Passage.prototype = {
 	render:function(){
@@ -61,7 +64,7 @@ Passage.prototype = {
  	* List: all choices (Choice array).
  */
 
-function Choices(listOfChoices){
+window.Choices = function(listOfChoices){
 	this.list = listOfChoices;
 }
 
@@ -90,7 +93,7 @@ function Choice(text,link){
 /*
  * When you click a choice, show the passage that follows.
  */
-function click_choice(chosenLink){
+window.click_choice = function(chosenLink){
 	// Clear choices shown on screen.
 	document.getElementById("choice-points").innerHTML = "";
 
@@ -348,3 +351,5 @@ function is_exp_true(param, op, val){
 function isNumeric(s) {
   return !isNaN(parseFloat(s)) && isFinite(s);
 }
+
+})();
