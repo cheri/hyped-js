@@ -10,27 +10,29 @@
  **/
 
 // A dictionary to store Passages.
-passages = {};
+window.passages = {};
 
-// Read in passage data from demo.json
-$.getJSON( "/demo/demo.json", function( data ) {
+$(document).ready(function(){
+	// Read in passage data from demo.json
+	$.getJSON( "/demo/demo.json", function( data ) {
 
-	// For each set of passage data,
-	for (var i=0; i<data.length; i++){
+		// For each set of passage data,
+		for (var i=0; i<data.length; i++){
 
-		// Construct the list of choices.
-		var choiceList = new Choices([]);
-		for (var j=0; j<data[i].choices.length;j++){
-			choiceList.addChoice(data[i].choices[j][0],data[i].choices[j][1]);
+			// Construct the list of choices.
+			var choiceList = new Choices([]);
+			for (var j=0; j<data[i].choices.length;j++){
+				choiceList.addChoice(data[i].choices[j][0],data[i].choices[j][1]);
+			}
+
+			// Define the data as a Passage object.
+			var p = new Passage(data[i].title, data[i].scene, choiceList);
+
+			// Add the Passage object to a searchable dictionary, with passage titles as keys.
+			passages[p.getTitle()] = p;
 		}
 
-		// Define the data as a Passage object.
-		var p = new Passage(data[i].title, data[i].scene, choiceList);
-
-		// Add the Passage object to a searchable dictionary, with passage titles as keys.
-		passages[p.getTitle()] = p;
-	}
-
-	// Display the first passage.
-	passages["Start"].render();
+		// Display the first passage.
+		passages["Start"].render();
+	});
 });
