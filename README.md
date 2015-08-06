@@ -1,4 +1,4 @@
-## What is HypedJS? 
+## What is HypedJS?
 HypedJS is a lightweight, open-source JavaScript tool that lets you quickly create and embed hypertext stories and experiences.
 
 ## How do I use HypedJS?
@@ -9,7 +9,7 @@ HypedJS is a lightweight, open-source JavaScript tool that lets you quickly crea
 3. To make change the text, edit the demo.json file. This file contains data about each passage in your hypertext experience.
 
   * Each passage should have an identifying **title**, static text that describes the **scene**, and an array of **choices**.
-  
+
   * A scene is an array of Strings, with each element being a separate paragraph in the scene. Each choice contains the text for that choice, and a reference (title) for the passage to which this choice should link.
 
   * The first passage displayed should have a title of **Start**.
@@ -25,7 +25,7 @@ HypedJS is a lightweight, open-source JavaScript tool that lets you quickly crea
 
 5) That's it! You can play around with the JS, CSS, and HTML to make it your own.
 
-## Extra Magic 
+## Extra Magic
 
 ### Setting Variables
 You can set hidden variables with String or number values.  Somewhere inside your scene description, simply write **@@set PARAM-NAME to PARAM-VALUE@@**.
@@ -35,7 +35,7 @@ To retrieve and state the value for a parameter, use the command **@@get PARAM-N
 Examples:
 * @@set hunger to full@@
 * @@set potions to 3@@
-* You have @@get potions@@ potions. 
+* You have @@get potions@@ potions.
 
 ### Modifying Variables
 You can add, subtract, or multiply numeric parameters.  The following commands are supported:
@@ -56,6 +56,6 @@ Optionally, you may then write **@@else@@**, and then state the text that should
 
 Finally, complete the if-statement with a terminating **@@endif@@**.
 
-Examples: 
+Examples:
  * @@if hunger eq full@@You feel full.@@endif@@
- * @@if potions gt 0@@You have at least one potion to use.@@else@@You have no more potions.@@endif@@ 
+ * @@if potions gt 0@@You have at least one potion to use.@@else@@You have no more potions.@@endif@@

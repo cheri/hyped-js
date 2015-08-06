@@ -6,7 +6,7 @@
 		"choices": 	[
 						["What is HypedJS?", "What"],
 						["What can I use HypedJS for?", "Uses"],
-						["How do I use HypedJS?", "How"]						
+						["How do I use HypedJS?", "How"]
 					]
 	},
 	{
@@ -14,13 +14,13 @@
 		"scene": 	["<h2>What is HypedJS?</h2>",
 					 "HypedJS is a lightweight, open-source JavaScript tool that lets you quickly create hypertext stories and experiences."],
 		"choices": 	[
-						["Back to Introduction.", "Start"]						
+						["Back to Introduction.", "Start"]
 					]
 	},
 	{
 		"title": 	"How",
 		"scene": 	["<h2>How do I make a hypertext experience with HypedJS?</h2>",
-					 "<h3>1) Fork and clone a local copy of the repo.</h3>", 
+					 "<h3>1) Fork and clone a local copy of the repo.</h3>",
 					 "<h3>2) Edit the <i>demo.json</i> file.  This file contains data about each <a href='http://twinery.org/wiki/passage'>passage</a> in your hypertext experience.</h3>",
 					 "<ul><li>Each passage should have an identifying <i>title</i>, static text that describes the <i>scene</i>, and an array of <i>choices</i>.</li>",
 					 "<li>A scene is an array of Strings, with each element being a separate paragraph in the scene.  Each choice contains the text for that choice, and a reference (title) for the passage to which this choice should link.</li>",
@@ -32,8 +32,8 @@
 					 "<h3>5) That's it!  You can play around with the JS, CSS, and HTML to make it your own.</h3>"
 					],
 		"choices": 	[
-						["Back to Introduction.", "Start"],	
-						["Any other magic I can do?","Magic"]					
+						["Back to Introduction.", "Start"],
+						["Any other magic I can do?","Magic"]
 					]
 	},
 	{
@@ -43,7 +43,7 @@
 					 "You can use it to automatically create reference documentation that's easy to read and navigate.  You can also create your own interactive, nonlinear stories."
 					],
 		"choices": 	[
-						["Back to Introduction.", "Start"]						
+						["Back to Introduction.", "Start"]
 					]
 	},
 	{
@@ -61,7 +61,7 @@
 					 "Finally, complete the if-statement with a terminating '<i>endif</i>', enclosed within double at signs."
 					],
 		"choices": 	[
-						["Back to Introduction.", "Start"]						
+						["Back to Introduction.", "Start"]
 					]
 	}
 ]

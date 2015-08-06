@@ -2,7 +2,7 @@ html,body{
 	background: #000;
 	color: lightgreen;
 	margin: 0px;
-	padding: 0px;	
+	padding: 0px;
 	font-family: Arial;
 }
 
@@ -19,7 +19,7 @@ i{
 	padding:40px;
 }
 .choice-point{
-	color:lightblue;	
+	color:lightblue;
 }
 .choice-point:hover{
 	cursor:pointer;
