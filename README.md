@@ -4,9 +4,9 @@ HypedJS is a lightweight, open-source JavaScript tool that lets you quickly crea
 ## How do I use HypedJS?
 1. Fork and clone a local copy of the repo.
 
-2. Skip to Step 3 if you want to view the demo.  Otherwise, continue to Step 2.
+2. Skip to Step 4 if you want to view the demo.  Otherwise, continue to Step 3.
 
-3. To make change the text, edit the demo.json file. This file contains data about each passage in your hypertext experience.
+3. To change the text, edit the demo.json file. This file contains data about each passage in your hypertext experience.
 
   * Each passage should have an identifying **title**, static text that describes the **scene**, and an array of **choices**.
 
